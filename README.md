@@ -1,11 +1,10 @@
-TE MAN v2.1  首个为ComfyUI打造的漫剧/增强生图/生视频插件
-
+TE MAN v2.0  首个为ComfyUI打造的漫剧/增强生图/生视频插件
+(用了新特性,只支持python3.13,可去b站下载我py3.13的整合包)
 
 v2.1
 1.与ComfyUI TE启动器配合,支持API并发,本地+API并发(TE启动器下载见B站https://space.bilibili.com/361444771)
 2.TE 保存视频节点支持加载本地视频
 3.grok视频支持线路2,异步方式(可用性和线路1基本是一样的,只是多个选择,方式不同)
-
 
 
 v2.0
@@ -28,7 +27,5 @@ v1.1
 
 
 API站:https://tem.588186.xyz
-
-QQ交流群:3025418
 
 B站主页:https://space.bilibili.com/361444771
