@@ -6,6 +6,7 @@ from .Grok_Safe_PY import (
     BananaGrokImageSafePyNode,
     BananaGrokVideoSafePyNode,
     BananaJimengVideoSafePyNode,
+    BananaSora2VideoSafePyNode,
     TEGPTImage2SafePyNode,
 )
 
@@ -19,6 +20,7 @@ NODE_CLASS_MAPPINGS = {
     "TE_image_pro_banana": BananaGeminiImageSafePyNode,
     "TE_image_pro_special_async2": BananaGeminiAsyncSafePyNode,
     "TE_image_pro_jimeng_video": BananaJimengVideoSafePyNode,
+    "TE_image_pro_sora2_video": BananaSora2VideoSafePyNode,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -28,4 +30,5 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "TE_image_pro_banana": "TE MAN Gemini Image",
     "TE_image_pro_special_async2": "TE MAN Gemini Async",
     "TE_image_pro_jimeng_video": "TE MAN Jimeng Video",
+    "TE_image_pro_sora2_video": "TE MAN sora2 video",
 }

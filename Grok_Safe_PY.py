@@ -34,6 +34,11 @@ try:
 except Exception as exc:  # pragma: no cover
     raise ImportError(f"无法加载 Jimeng_Video_Generator 基础节点: {exc}")
 
+try:
+    from .Sora_2_Video_Generator import BananaSora2VideoNode as _BaseSora2VideoNode
+except Exception as exc:  # pragma: no cover
+    raise ImportError(f"无法加载 Sora_2_Video_Generator 基础节点: {exc}")
+
 
 _MAX_INPUT_IMAGE_MEGAPIXELS = 1.0
 _EDIT_IMAGE_URL_FORMAT_OPTION_NAME = "图生图image_url格式测试"
@@ -519,6 +524,25 @@ class BananaJimengVideoSafePyNode(_BaseJimengVideoNode):
         if input_routes > 0:
             logger.info(
                 f"Jimeng Safe PY 参考图数量: "
+                f"{input_routes} 路输入, 合并后 {merged_count} 张"
+            )
+        return super().generate_video(*args, **call_kwargs)
+
+
+class BananaSora2VideoSafePyNode(_BaseSora2VideoNode):
+    CATEGORY = "TE MAN/Sora"
+
+    def generate_video(self, *args, **kwargs):
+        call_kwargs = dict(kwargs)
+        call_kwargs, input_routes, merged_count = _scale_named_image_kwargs(
+            call_kwargs,
+            ["image"],
+            "Sora2 Safe PY 输入图",
+            log_unscaled=True,
+        )
+        if input_routes > 0:
+            logger.info(
+                f"Sora2 Safe PY 参考图数量: "
                 f"{input_routes} 路输入, 合并后 {merged_count} 张"
             )
         return super().generate_video(*args, **call_kwargs)
