@@ -2,7 +2,14 @@
 
 首个为 ComfyUI 打造的漫剧 / 增强生图 / 生视频插件。
 
-用了新特性，只支持 Python 3.13，可去 B 站下载我的 Py3.13 整合包。
+用了新特性，只支持 Python 3.13，可去 B 站下载我的 Py3.13 整合包(https://pan.quark.cn/s/e1649b85eb60)。
+
+
+## v2.1.2
+
+1. 增加 TE VEO 节点，支持 VEO 3 fast 生成视频。支持首帧,首尾帧,图参.
+2. 增加 TE JM 节点，支持 JM 生成视频。
+3. 增加 TE banana 特渠, 特点是低分辨率费率低,较为稳定
 
 ## v2.1.1
 
@@ -10,7 +17,7 @@
 
 ## v2.1
 
-1. 与 ComfyUI TE 启动器配合，支持 API 并发、本地 + API 并发。（TE 启动器下载见 B 站：https://space.bilibili.com/361444771）
+1. 与 ComfyUI TE 启动器配合，支持 API 并发、本地 + API 并发。（TE 启动器下载见 B 站：https://space.bilibili.com/361444771）(https://pan.quark.cn/s/228999e7c788)
 2. TE 保存视频节点支持加载本地视频。
 3. grok 视频支持线路2，异步方式。（可用性和线路1基本是一样的，只是多个选择，方式不同）
 

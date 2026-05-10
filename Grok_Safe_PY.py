@@ -35,6 +35,18 @@ except Exception as exc:  # pragma: no cover
     raise ImportError(f"无法加载 Jimeng_Video_Generator 基础节点: {exc}")
 
 try:
+    from .TE_JM_Video import BananaTEJMVideoNode as _BaseTEJMVideoNode
+except Exception as exc:  # pragma: no cover
+    _BaseTEJMVideoNode = None  # type: ignore
+    logger.warning(f"TE_JM_Video 基础节点暂不可用，等待编译后的模块: {exc}")
+
+try:
+    from .TE_VEO_Video import BananaTEVeoVideoNode as _BaseTEVeoVideoNode
+except Exception as exc:  # pragma: no cover
+    _BaseTEVeoVideoNode = None  # type: ignore
+    logger.warning(f"TE_VEO_Video 基础节点暂不可用，等待编译后的模块: {exc}")
+
+try:
     from .Sora_2_Video_Generator import BananaSora2VideoNode as _BaseSora2VideoNode
 except Exception as exc:  # pragma: no cover
     raise ImportError(f"无法加载 Sora_2_Video_Generator 基础节点: {exc}")
@@ -527,6 +539,56 @@ class BananaJimengVideoSafePyNode(_BaseJimengVideoNode):
                 f"{input_routes} 路输入, 合并后 {merged_count} 张"
             )
         return super().generate_video(*args, **call_kwargs)
+
+
+if _BaseTEJMVideoNode is not None:
+    class BananaTEJMVideoSafePyNode(_BaseTEJMVideoNode):
+        CATEGORY = "TE MAN/Jimeng"
+
+        def generate_video(self, *args, **kwargs):
+            call_kwargs = dict(kwargs)
+            call_kwargs, input_routes, merged_count = _scale_named_image_kwargs(
+                call_kwargs,
+                ["image", "image_2", "image_3", "image_4"],
+                "TE JM Safe PY 输入图",
+                log_unscaled=True,
+            )
+            if input_routes > 0:
+                logger.info(
+                    f"TE JM Safe PY 参考图数量: "
+                    f"{input_routes} 路输入, 合并后 {merged_count} 张"
+                )
+            return super().generate_video(*args, **call_kwargs)
+else:
+    BananaTEJMVideoSafePyNode = None  # type: ignore
+
+
+if _BaseTEVeoVideoNode is not None:
+    class BananaTEVeoVideoSafePyNode(_BaseTEVeoVideoNode):
+        CATEGORY = "TE MAN/Veo"
+
+        def generate_video(self, *args, **kwargs):
+            call_kwargs = dict(kwargs)
+            call_kwargs, input_routes, merged_count = _scale_named_image_kwargs(
+                call_kwargs,
+                [
+                    "reference_image_1",
+                    "reference_image_2",
+                    "reference_image_3",
+                    "first_frame_image",
+                    "last_frame_image",
+                ],
+                "TE veo Safe PY 输入图",
+                log_unscaled=True,
+            )
+            if input_routes > 0:
+                logger.info(
+                    f"TE veo Safe PY 参考图数量: "
+                    f"{input_routes} 路输入, 合并后 {merged_count} 张"
+                )
+            return super().generate_video(*args, **call_kwargs)
+else:
+    BananaTEVeoVideoSafePyNode = None  # type: ignore
 
 
 class BananaSora2VideoSafePyNode(_BaseSora2VideoNode):
